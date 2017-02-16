@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CS 142 Project 1</title>
+    <link rel="stylesheet" type="text/css" href="project1b.css">
+  </head>
+  <body>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Manufacturer</th>
+            <th>Size</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row">
+            <td>Corn Flakes</td>
+            <td>Kellogg's</td>
+            <td>18 oz.</td>
+            <td class="unit-price">2.50</td>
+            <td class="quantity">1</td>
+            <td class="total-price">2.50</td>
+          </tr>
+          <tr class="row">
+            <td>Solid White Tuna</td>
+            <td>Starkist</td>
+            <td>5 oz</td>
+            <td class="unit-price">2.79</td>
+            <td class="quantity">2</td>
+            <td class="total-price">5.58</td>
+          </tr>
+          <tr class="row">
+            <td>Cream of Mushroom Soup</td>
+            <td>Campbell's</td>
+            <td>10.75 oz</td>
+            <td class="unit-price">1.00</td>
+            <td class="quantity">2</td>
+            <td class="total-price">2.00</td>
+          </tr>
+          <tr class="row">
+            <td>2% Lowfat Milk</td>
+            <td>Safeway</td>
+            <td>0.5 gal</td>
+            <td class="unit-price">1.99</td>
+            <td class="quantity">1</td>
+            <td class="total-price">1.99</td>
+          </tr>
+          <tr class="row">
+            <td>Extra-Wide Egg Noodles</td>
+            <td>Golden Grain</td>
+            <td>12 oz</td>
+            <td class="unit-price">0.87</td>
+            <td class="quantity">3</td>
+            <td class="total-price">2.61</td>
+          </tr>
+          <tr id="total">
+            <td colspan="4">Total</td>
+            <td class="quantity"></td>
+            <td class="total-price"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script type="text/javascript" charset="utf-8" async defer>
+
+      var $quantities = document.querySelectorAll(".row .quantity");
+      var $prices = document.querySelectorAll(".row .total-price");
+      var $totalQuantityCell = document.querySelector("#total .quantity");
+      var $totalPriceCell = document.querySelector("#total .total-price");
+
+      console.log($quantities, $prices)
+
+      function renderSums(quantities, prices, $qElem, $pElem) {
+        $qElem.innerHTML = quantities;
+        $pElem.innerHTML = prices;
+      }
+
+      function sumColumns($quantities, $prices) {
+        var len, quantities_sum = 0, prices_sum = 0;
+
+        if ($quantities.length === $prices.length) {
+          len = $quantities.length;
+        } else {
+          return;
+        }
+
+        for (var i = 0; i < len; i++) {
+          var priceVal = $prices[i].innerHTML;
+          var quantityVal = $quantities[i].innerHTML;
+
+          prices_sum += !isNaN(priceVal) ? parseFloat(priceVal) : 0.0;
+          quantities_sum += !isNaN(quantityVal) ? parseInt(quantityVal) : 0;
+        }
+
+        return [ prices_sum, quantities_sum ];
+      }
+      var sums = sumColumns($quantities, $prices);
+      renderSums(sums[0], sums[1], $totalPriceCell, $totalQuantityCell);
+
+    </script>
+  </body>
+</html>
