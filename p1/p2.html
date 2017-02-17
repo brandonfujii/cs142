@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CS142 Project 1 Problem 2 - Tabs</title>
+    <link rel="stylesheet" type="text/css" href="p2.css">
+  </head>
+  <body>
+    <div class="nav-container">
+      <ul class="nav-list">
+        <li class="nav-tab">
+          <a href="#">Inventory</a>
+        </li>
+        <li class="nav-tab">
+          <a href="#">Order Information</a>
+        </li>
+        <li class="nav-tab selected">
+          <a href="#">Accounts</a>
+        </li>
+        <li class="nav-tab">
+          <a href="#">Shippers</a>
+        </li>
+        <li class="nav-tab">
+          <a href="#">Suppliers</a>
+        </li>
+        <hr class="nav-line" />
+      </ul>
+    </div>
+    <script type="text/javascript" charset="utf-8" async defer>
+      (function () {
+        function onTabSelect(e) {
+          var selectedTabs = document.querySelectorAll(".nav-tab.selected");
+
+          // Clear selected tabs
+          for (var i = 0; i < selectedTabs.length; i++) {
+            selectedTabs[i].className = selectedTabs[i].className.replace('selected', '');
+          }
+          // Add selected class to parent elem if user clicks on child anchor tag
+          if (e.target.nodeName === "A") { 
+            e.target.parentNode.className += " selected";
+          }
+          // Add selected class to elem if nav-tab is selected
+          if (e.target.className.indexOf("nav-tab") !== -1) {
+            e.target.className += " selected";
+          }
+        }
+        
+        var tabs = document.querySelector(".nav-list");
+        tabs.addEventListener('click', onTabSelect, false);       
+ 
+      })();
+    </script>
+  </body>
+</html>

@@ -33,3 +33,7 @@ table tbody tr:nth-child(even) {
 table tbody tr td.unit-price, table tbody tr td.quantity, table tbody tr td.total-price {
   text-align: center;
 }
+
+table tbody tr#total {
+  display: none;
+}

@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>CS 142 Project 1</title>
-    <link rel="stylesheet" type="text/css" href="project1b.css">
+    <title>CS 142 Project 1 Problem 1</title>
+    <link rel="stylesheet" type="text/css" href="p1a.css">
   </head>
   <body>
     <div class="table-container">
@@ -74,8 +74,6 @@
       var $totalQuantityCell = document.querySelector("#total .quantity");
       var $totalPriceCell = document.querySelector("#total .total-price");
 
-      console.log($quantities, $prices)
-
       function renderSums(quantities, prices, $qElem, $pElem) {
         $qElem.innerHTML = quantities;
         $pElem.innerHTML = prices;
@@ -87,7 +85,7 @@
         if ($quantities.length === $prices.length) {
           len = $quantities.length;
         } else {
-          return;
+          return [0, 0]
         }
 
         for (var i = 0; i < len; i++) {
@@ -97,9 +95,9 @@
           prices_sum += !isNaN(priceVal) ? parseFloat(priceVal) : 0.0;
           quantities_sum += !isNaN(quantityVal) ? parseInt(quantityVal) : 0;
         }
-
         return [ prices_sum, quantities_sum ];
       }
+
       var sums = sumColumns($quantities, $prices);
       renderSums(sums[0], sums[1], $totalPriceCell, $totalQuantityCell);
 
